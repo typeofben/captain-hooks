@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Captain from './Captain';
+import TreasureChest from './TreasureChest';
+import LootingControls from './LootingControls';
 
 function App() {
+  const [numberOfRubies, setNumberOfRubies] = useState(4200);
+  const [numberOfDoubloons, setNumberOfDoubloons] = useState(4000);
+  const [numberOfSilverCoins, setNumberOfSilverCoins] = useState(4270);
+
+  const treasureChestContents = {
+    rubies: numberOfRubies,
+    doubloons: numberOfDoubloons,
+    silverCoins: numberOfSilverCoins
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Captain contents={treasureChestContents} />
+      <h3>The Treasure Chest contains:</h3>
+      <TreasureChest contents={treasureChestContents} />
+      <LootingControls
+        rubyQuantity={numberOfRubies}
+        updateNumberOfRubies={setNumberOfRubies}
+        doubloonQuantity={numberOfDoubloons}
+        updateNumberOfDoubloons={setNumberOfDoubloons}
+        silverCoinQuantity={numberOfSilverCoins}
+        updateNumberOfSilverCoins={setNumberOfSilverCoins}
+      />
     </div>
   );
 }
